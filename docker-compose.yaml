@@ -42,13 +42,24 @@ services:
     volumes:
       - wordpress:/var/www/html
       - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
     networks:
       - app-network
 
+  certbot:
+    depends_on:
+      - webserver
+    container_name: certbot
+    image: certbot/certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - wordpress:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email longlikun6@gmail.com --agree-tos --no-eff-email --staging -d dockerwp.eimoon.com
 
 volumes:
   wordpress:
   dbdata:
+  certbot-etc:
 
 networks:
   app-network:
