@@ -45,22 +45,10 @@ services:
     networks:
       - app-network
 
-  certbot:
-    depends_on:
-      - webserver
-    container_name: certbot
-    image: certbot/certbot
-    volumes:
-      - wordpress:/var/www/html
-      - certbot-etc:/etc/letsencrypt
-    command: certbot certonly --webroot --w=/var/www/html --email longlikun6@gmail.com --agree-tos --no-eff-email --staging -d dockerwp.eimoon.com
-    
-
 
 volumes:
   wordpress:
   dbdata:
-  certbot-etc:
 
 networks:
   app-network:
