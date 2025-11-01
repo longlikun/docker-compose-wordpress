@@ -45,6 +45,7 @@ services:
       - wordpress:/var/www/html
       - ./nginx-conf:/etc/nginx/conf.d
       - ./scripts:/scripts
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     command: ["sh", "-c", "/scripts/wait-for.sh wordpress:9000 --timeout=60 --strict -- nginx -g 'daemon off;'"]
     networks:
       - app-network

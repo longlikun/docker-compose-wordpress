@@ -1,2 +1,3 @@
 .env
 wait-for-it
+.DS_Store
